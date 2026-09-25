@@ -11,9 +11,12 @@ cttimer 1h30m15s
 cttimer 1:30:15
 cttimer 25m "Lab"
 cttimer --settings
+cttimer --debug 10m
 ```
 
 A duration can also be a number of minutes (`cttimer 10`) or clock notation (`cttimer 25:00`). Running `cttimer` without a duration starts the default timer (20 minutes initially). Change its duration in Settings; use `cttimer --settings` to open Settings directly.
+
+Normal launches return control to the terminal and keep diagnostic output quiet. Use `--debug` to keep the app attached to the terminal and see its diagnostic messages.
 
 - Click inside the progress ring or press **Space** to pause or resume.
 - Press **+** or **=** to add the configured increment; press **-** to subtract it, down to a minimum of 10 seconds.
