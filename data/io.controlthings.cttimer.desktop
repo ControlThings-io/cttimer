@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=cttimer
+GenericName=Countdown Timer
+Comment=A focused KDE countdown timer
+Exec=cttimer
+Icon=io.controlthings.cttimer
+Terminal=false
+Categories=Utility;Qt;KDE;
+Keywords=timer;countdown;alarm;clock;
+StartupNotify=true
+X-KDE-StartupNotify=true

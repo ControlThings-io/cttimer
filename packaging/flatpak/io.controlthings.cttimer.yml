@@ -1,0 +1,21 @@
+app-id: io.controlthings.cttimer
+runtime: org.kde.Platform
+runtime-version: "6.9"
+sdk: org.kde.Sdk
+command: cttimer
+
+finish-args:
+  - --share=ipc
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --socket=pulseaudio
+  - --talk-name=org.freedesktop.Notifications
+
+modules:
+  - name: "ControlThings Timer"
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCTTIMER_BUILD_TESTS=OFF
+    sources:
+      - type: dir
+        path: ../..

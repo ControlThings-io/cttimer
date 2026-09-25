@@ -1,0 +1,12 @@
+<RCC>
+  <qresource prefix="/qml">
+    <file alias="Main.qml">../qml/Main.qml</file>
+    <file alias="TimerPage.qml">../qml/TimerPage.qml</file>
+    <file alias="SettingsPage.qml">../qml/SettingsPage.qml</file>
+    <file alias="SettingsDialog.qml">../qml/SettingsDialog.qml</file>
+    <file alias="components/ProgressRing.qml">../qml/components/ProgressRing.qml</file>
+  </qresource>
+  <qresource prefix="/icons">
+    <file alias="io.controlthings.cttimer.svg">../assets/icons/io.controlthings.cttimer.svg</file>
+  </qresource>
+</RCC>
