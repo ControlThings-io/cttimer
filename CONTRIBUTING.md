@@ -59,8 +59,18 @@ The local development manifest uses the KDE 6.11 runtime. Install the Platform a
 flatpak install --system flathub org.kde.Platform//6.11 org.kde.Sdk//6.11
 flatpak-builder --force-clean --repo=build-flatpak-repo build-flatpak packaging/flatpak/io.controlthings.cttimer.yml
 flatpak build-bundle build-flatpak-repo cttimer.flatpak io.controlthings.cttimer
-sudo flatpak install --system ./cttimer.flatpak
-flatpak run io.controlthings.cttimer 10m
+sudo flatpak install --system --reinstall ./cttimer.flatpak
+flatpak run --system io.controlthings.cttimer --version
+flatpak run --system io.controlthings.cttimer
+```
+
+The `--reinstall` flag replaces an existing system installation, and `run --system` avoids launching an older per-user installation with the same app ID. To check for a per-user copy, run `flatpak info --user io.controlthings.cttimer`. Run `flatpak run --system io.controlthings.cttimer --settings` to verify the Settings page.
+
+Qt also keeps a compiled QML cache in the app's user cache directory, separate from the Flatpak build cache. This can survive uninstalling the app. The manifest disables this disk cache because Flatpak normalizes resource timestamps, which can allow older cached UI code to remain valid after a rebuild. To test an existing installation without using its QML disk cache, run:
+
+```bash
+flatpak run --system --env=QML_DISABLE_DISK_CACHE=1 io.controlthings.cttimer --settings
+flatpak run --system --env=QML_DISABLE_DISK_CACHE=1 io.controlthings.cttimer
 ```
 
 The manifest uses a local directory as its source. A Flathub submission should use a tagged release archive and checksum. The sandbox requests Wayland or X11 fallback, audio output, and the notification D-Bus service; it does not request network access.

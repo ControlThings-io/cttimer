@@ -5,6 +5,8 @@ sdk: org.kde.Sdk
 command: cttimer
 
 finish-args:
+  # Normalized resource timestamps can leave Qt using QML cached by an older build.
+  - --env=QML_DISABLE_DISK_CACHE=1
   - --share=ipc
   - --socket=wayland
   - --socket=fallback-x11
