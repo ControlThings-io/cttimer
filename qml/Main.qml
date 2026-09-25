@@ -5,10 +5,10 @@ import org.kde.kirigami as Kirigami
 Kirigami.ApplicationWindow {
     id: window
     visible: true
-    width: settingsOnly ? 520 : 410
-    height: settingsOnly ? 520 : 455
-    minimumWidth: 360
-    minimumHeight: 400
+    width: settingsOnly ? 520 : 328
+    height: settingsOnly ? 520 : 364
+    minimumWidth: settingsOnly ? 360 : 328
+    minimumHeight: settingsOnly ? 400 : 364
     title: settingsOnly ? "cttimer Settings" : (timerController.label.length ? timerController.label + " — cttimer" : "cttimer")
     flags: Qt.Window | (settingsManager.alwaysOnTop && !settingsOnly ? Qt.WindowStaysOnTopHint : 0)
 

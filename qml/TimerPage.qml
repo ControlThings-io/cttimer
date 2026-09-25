@@ -43,7 +43,7 @@ Kirigami.Page {
 
         Item {
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: Math.min(root.width - Kirigami.Units.gridUnit * 4, 300)
+            Layout.preferredWidth: Math.min(root.width - Kirigami.Units.gridUnit * 4, 240)
             Layout.preferredHeight: width
 
             ProgressRing {
@@ -94,6 +94,5 @@ Kirigami.Page {
             }
         }
 
-        Item { Layout.fillHeight: true }
     }
 }
