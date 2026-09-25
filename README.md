@@ -93,10 +93,10 @@ Reconfigure/rebuild after adding the WAV.
 
 ## Flatpak
 
-The local-development manifest uses the KDE 6.9 runtime:
+The local-development manifest uses the KDE 6.11 runtime:
 
 ```bash
-flatpak install --user flathub org.kde.Platform//6.9 org.kde.Sdk//6.9
+flatpak install --user flathub org.kde.Platform//6.11 org.kde.Sdk//6.11
 flatpak-builder --user --install --force-clean build-flatpak packaging/flatpak/io.controlthings.cttimer.yml
 flatpak run io.controlthings.cttimer 10m
 ```
