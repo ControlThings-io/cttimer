@@ -35,12 +35,13 @@ int main(int argc, char *argv[])
     parser.process(app);
 
     const QStringList positional = parser.positionalArguments();
-    const bool settingsOnly = parser.isSet(settingsOption) || positional.isEmpty();
+    const bool settingsOnly = parser.isSet(settingsOption);
+    SettingsManager settings;
 
     qint64 durationMs = 0;
     QString label;
     if (!settingsOnly) {
-        const ParsedDuration parsed = DurationParser::parse(positional.at(0));
+        const ParsedDuration parsed = DurationParser::parse(positional.isEmpty() ? settings.defaultDuration() : positional.at(0));
         if (!parsed.ok()) {
             QTextStream err(stderr);
             err << "cttimer: " << parsed.error << "\n\n" << DurationParser::usage();
@@ -51,7 +52,6 @@ int main(int argc, char *argv[])
             label = positional.mid(1).join(QLatin1Char(' '));
     }
 
-    SettingsManager settings;
     TimerController timer(durationMs, label, &settings);
 
     QQmlApplicationEngine engine;

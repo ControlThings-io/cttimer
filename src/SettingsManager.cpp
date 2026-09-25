@@ -1,4 +1,5 @@
 #include "SettingsManager.h"
+#include "DurationParser.h"
 
 #include <QAudioOutput>
 #include <QFileInfo>
@@ -11,6 +12,9 @@ SettingsManager::SettingsManager(QObject *parent)
     : QObject(parent)
 {
     QSettings s(settingsPath(), QSettings::IniFormat);
+    const QString savedDefaultDuration = s.value(QStringLiteral("timer/defaultDuration"), QStringLiteral("20m")).toString();
+    if (DurationParser::parse(savedDefaultDuration).ok())
+        m_defaultDuration = savedDefaultDuration;
     m_adjustmentSeconds = qBound(1, s.value(QStringLiteral("timer/adjustmentSeconds"), 60).toInt(), 3600);
     m_alwaysOnTop = s.value(QStringLiteral("window/alwaysOnTop"), true).toBool();
     m_repeatCount = qBound(0, s.value(QStringLiteral("alarm/repeatCount"), 1).toInt(), 3);
@@ -23,6 +27,7 @@ SettingsManager::SettingsManager(QObject *parent)
     m_testAudio->setVolume(1.0f);
 }
 
+QString SettingsManager::defaultDuration() const { return m_defaultDuration; }
 int SettingsManager::adjustmentSeconds() const { return m_adjustmentSeconds; }
 bool SettingsManager::alwaysOnTop() const { return m_alwaysOnTop; }
 int SettingsManager::repeatCount() const { return m_repeatCount; }
@@ -35,6 +40,20 @@ QString SettingsManager::soundDisplayName() const
     if (m_customSoundPath.isEmpty())
         return QStringLiteral("notify4 (CC0)");
     return QFileInfo(m_customSoundPath).fileName();
+}
+
+void SettingsManager::setDefaultDuration(const QString &value)
+{
+    const QString duration = value.trimmed();
+    if (!DurationParser::parse(duration).ok() || m_defaultDuration == duration) return;
+    m_defaultDuration = duration;
+    save();
+    emit defaultDurationChanged();
+}
+
+bool SettingsManager::isValidDuration(const QString &value) const
+{
+    return DurationParser::parse(value).ok();
 }
 
 void SettingsManager::setAdjustmentSeconds(int value)
@@ -123,6 +142,7 @@ QString SettingsManager::settingsPath()
 void SettingsManager::save()
 {
     QSettings s(settingsPath(), QSettings::IniFormat);
+    s.setValue(QStringLiteral("timer/defaultDuration"), m_defaultDuration);
     s.setValue(QStringLiteral("timer/adjustmentSeconds"), m_adjustmentSeconds);
     s.setValue(QStringLiteral("window/alwaysOnTop"), m_alwaysOnTop);
     s.setValue(QStringLiteral("alarm/repeatCount"), m_repeatCount);

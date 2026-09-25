@@ -22,6 +22,24 @@ Kirigami.ScrollablePage {
         Kirigami.FormLayout {
             Layout.fillWidth: true
 
+            Controls.TextField {
+                id: defaultDurationField
+                Kirigami.FormData.label: "Default timer:"
+                text: settingsManager.defaultDuration
+                placeholderText: "20m"
+                onEditingFinished: {
+                    if (settingsManager.isValidDuration(text))
+                        settingsManager.defaultDuration = text
+                }
+            }
+
+            Controls.Label {
+                visible: !settingsManager.isValidDuration(defaultDurationField.text)
+                text: "Enter a duration such as 20m or 1h30m."
+                color: Kirigami.Theme.negativeTextColor
+                wrapMode: Text.WordWrap
+            }
+
             Controls.SpinBox {
                 Kirigami.FormData.label: "Time adjustment:"
                 from: 1

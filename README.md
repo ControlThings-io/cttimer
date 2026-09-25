@@ -5,13 +5,15 @@ A small KDE Plasma countdown timer built with Qt 6 and Kirigami. Start a timer f
 ## Use
 
 ```bash
-cttimer 10m
-cttimer 1h30m
+cttimer
+cttimer 10
+cttimer 1h30m15s
+cttimer 1:30:15
 cttimer 25m "Lab"
 cttimer --settings
 ```
 
-A duration can also be a number of minutes (`cttimer 10`) or clock notation (`cttimer 25:00`). Running `cttimer` without a duration opens Settings.
+A duration can also be a number of minutes (`cttimer 10`) or clock notation (`cttimer 25:00`). Running `cttimer` without a duration starts the default timer (20 minutes initially). Change its duration in Settings; use `cttimer --settings` to open Settings directly.
 
 - Click inside the progress ring or press **Space** to pause or resume.
 - Press **+** or **=** to add the configured increment; press **-** to subtract it, down to a minimum of 10 seconds.
@@ -23,7 +25,7 @@ The default alarm is `notify4.wav` by Mihacappy, licensed CC0 1.0. You can selec
 
 ## KDE Plasma shortcuts
 
-You can assign a custom global shortcut to each timer you use often. For example, set **Meta+Shift+2** to run `cttimer 20m "Lab"` and start a 20-minute Lab timer with one shortcut. For a Flatpak install, use `flatpak run io.controlthings.cttimer 20m "Lab"` as the command.
+You can assign a custom global shortcut to each timer you use often. For example, set **Meta+Ctrl+2** to run `cttimer 20m "Lab"` and start a 20-minute Lab timer with one shortcut. For a Flatpak install, use `flatpak run io.controlthings.cttimer 20m "Lab"` as the command.
 
 ## Installation
 

@@ -71,7 +71,7 @@ QString DurationParser::usage()
 {
     return QStringLiteral(
         "Usage:\n"
-        "  cttimer <duration> [label]\n"
+        "  cttimer [duration] [label]\n"
         "  cttimer --settings\n\n"
         "Duration examples:\n"
         "  10m       10 minutes\n"
