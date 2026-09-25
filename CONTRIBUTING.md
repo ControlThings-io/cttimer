@@ -53,11 +53,13 @@ If the file is absent from your checkout, download the CC0 original from [Freeso
 
 ## Flatpak
 
-The local development manifest uses the KDE 6.11 runtime. Install the Platform and SDK into the system Flatpak installation, then build and run:
+The local development manifest uses the KDE 6.11 runtime. Install the Platform and SDK into the system Flatpak installation, then build a local bundle and install it system-wide:
 
 ```bash
 flatpak install --system flathub org.kde.Platform//6.11 org.kde.Sdk//6.11
-flatpak-builder --system --install --force-clean build-flatpak packaging/flatpak/io.controlthings.cttimer.yml
+flatpak-builder --force-clean --repo=build-flatpak-repo build-flatpak packaging/flatpak/io.controlthings.cttimer.yml
+flatpak build-bundle build-flatpak-repo cttimer.flatpak io.controlthings.cttimer
+sudo flatpak install --system ./cttimer.flatpak
 flatpak run io.controlthings.cttimer 10m
 ```
 
