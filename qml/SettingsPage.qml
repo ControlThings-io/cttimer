@@ -98,13 +98,20 @@ Kirigami.ScrollablePage {
             }
         }
 
+        Controls.Label {
+            Layout.fillWidth: true
+            visible: settingsManager.customSoundPath.length === 0 && settingsManager.defaultSoundAvailable
+            text: "Default sound: notify4 by Mihacappy (CC0)."
+            color: Kirigami.Theme.disabledTextColor
+            font.pixelSize: Kirigami.Theme.defaultFont.pixelSize * 0.9
+            wrapMode: Text.WordWrap
+        }
+
         Kirigami.InlineMessage {
             Layout.fillWidth: true
-            visible: settingsManager.customSoundPath.length === 0
-            type: settingsManager.defaultSoundAvailable ? Kirigami.MessageType.Information : Kirigami.MessageType.Warning
-            text: settingsManager.defaultSoundAvailable
-                  ? "Default: notify4 by Mihacappy (CC0)."
-                  : "notify4 is not embedded in this build; choose a custom sound or add the CC0 source asset and rebuild."
+            visible: settingsManager.customSoundPath.length === 0 && !settingsManager.defaultSoundAvailable
+            type: Kirigami.MessageType.Warning
+            text: "notify4 is not embedded in this build; choose a custom sound or add the CC0 source asset and rebuild."
         }
 
         Item { Layout.fillHeight: true }
