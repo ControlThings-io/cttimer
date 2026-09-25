@@ -12,7 +12,7 @@ finish-args:
   - --talk-name=org.freedesktop.Notifications
 
 modules:
-  - name: "ControlThings Timer"
+  - name: cttimer
     buildsystem: cmake-ninja
     config-opts:
       - -DCTTIMER_BUILD_TESTS=OFF
