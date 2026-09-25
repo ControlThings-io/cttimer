@@ -44,6 +44,33 @@ sudo cmake --install build
 
 On an immutable Aurora/bootc system, build in a toolbox/distrobox or as part of the image build rather than layering development packages onto the host.
 
+### VS Code Dev Container with Podman
+
+The checked-in Dev Container provides the Fedora C++ toolchain and the Qt 6 and
+Kirigami dependencies without layering development packages onto an immutable
+host. Install the VS Code Dev Containers extension and configure it to use
+Podman in your user settings:
+
+```json
+{
+  "dev.containers.dockerPath": "podman"
+}
+```
+
+Run **Dev Containers: Reopen in Container** from the VS Code command palette.
+CMake Tools configures the project with Ninja in `build-devcontainer`. To build
+and test manually from the integrated terminal:
+
+```bash
+cmake -S . -B build-devcontainer -G Ninja -DCMAKE_BUILD_TYPE=Debug
+cmake --build build-devcontainer
+ctest --test-dir build-devcontainer --output-on-failure
+```
+
+The Dev Container is intended for compilation and tests. Running the graphical
+application from it additionally requires forwarding the host's Wayland and
+audio sockets; use the Flatpak workflow below to exercise the sandboxed GUI.
+
 ## Default sound
 
 Freesound requires login to download the original `notify4.wav`, so it is intentionally not included in this generated archive. Download the CC0 original from:

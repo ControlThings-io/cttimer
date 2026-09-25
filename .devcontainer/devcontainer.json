@@ -1,0 +1,20 @@
+{
+  "name": "ControlThings Timer",
+  "build": {
+    "dockerfile": "Containerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cmake-tools",
+        "ms-vscode.cpptools"
+      ],
+      "settings": {
+        "cmake.buildDirectory": "${workspaceFolder}/build-devcontainer",
+        "cmake.configureOnOpen": true,
+        "cmake.generator": "Ninja"
+      }
+    }
+  }
+}
+
