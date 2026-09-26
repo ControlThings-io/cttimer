@@ -16,7 +16,6 @@ SettingsManager::SettingsManager(QObject *parent)
     if (DurationParser::parse(savedDefaultDuration).ok())
         m_defaultDuration = savedDefaultDuration;
     m_adjustmentSeconds = qBound(1, s.value(QStringLiteral("timer/adjustmentSeconds"), 60).toInt(), 3600);
-    m_alwaysOnTop = s.value(QStringLiteral("window/alwaysOnTop"), true).toBool();
     m_repeatCount = qBound(0, s.value(QStringLiteral("alarm/repeatCount"), 1).toInt(), 3);
     m_customSoundPath = s.value(QStringLiteral("alarm/customSoundPath")).toString();
     m_notifyOnComplete = s.value(QStringLiteral("alarm/notifyOnComplete"), true).toBool();
@@ -29,7 +28,6 @@ SettingsManager::SettingsManager(QObject *parent)
 
 QString SettingsManager::defaultDuration() const { return m_defaultDuration; }
 int SettingsManager::adjustmentSeconds() const { return m_adjustmentSeconds; }
-bool SettingsManager::alwaysOnTop() const { return m_alwaysOnTop; }
 int SettingsManager::repeatCount() const { return m_repeatCount; }
 QString SettingsManager::customSoundPath() const { return m_customSoundPath; }
 bool SettingsManager::notifyOnComplete() const { return m_notifyOnComplete; }
@@ -63,14 +61,6 @@ void SettingsManager::setAdjustmentSeconds(int value)
     m_adjustmentSeconds = value;
     save();
     emit adjustmentSecondsChanged();
-}
-
-void SettingsManager::setAlwaysOnTop(bool value)
-{
-    if (m_alwaysOnTop == value) return;
-    m_alwaysOnTop = value;
-    save();
-    emit alwaysOnTopChanged();
 }
 
 void SettingsManager::setRepeatCount(int value)
@@ -144,7 +134,6 @@ void SettingsManager::save()
     QSettings s(settingsPath(), QSettings::IniFormat);
     s.setValue(QStringLiteral("timer/defaultDuration"), m_defaultDuration);
     s.setValue(QStringLiteral("timer/adjustmentSeconds"), m_adjustmentSeconds);
-    s.setValue(QStringLiteral("window/alwaysOnTop"), m_alwaysOnTop);
     s.setValue(QStringLiteral("alarm/repeatCount"), m_repeatCount);
     s.setValue(QStringLiteral("alarm/customSoundPath"), m_customSoundPath);
     s.setValue(QStringLiteral("alarm/notifyOnComplete"), m_notifyOnComplete);

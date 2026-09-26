@@ -73,7 +73,9 @@ flatpak run --system --env=QML_DISABLE_DISK_CACHE=1 io.controlthings.cttimer --s
 flatpak run --system --env=QML_DISABLE_DISK_CACHE=1 io.controlthings.cttimer
 ```
 
-The manifest uses a local directory as its source. A Flathub submission should use a tagged release archive and checksum. The sandbox requests Wayland or X11 fallback, audio output, and the notification D-Bus service; it does not request network access.
+The manifest uses a local directory as its source. A Flathub submission should use a tagged release archive and checksum.
+
+The sandbox requests Wayland or X11 fallback, audio output, and the notification D-Bus service; it does not request network access.
 
 ## Source layout
 

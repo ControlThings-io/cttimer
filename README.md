@@ -21,7 +21,7 @@ Normal launches return control to the terminal and keep diagnostic output quiet.
 - Click inside the progress ring or press **Space** to pause or resume.
 - Press **+** or **=** to add the configured increment; press **-** to subtract it, down to a minimum of 10 seconds.
 - Press **Ctrl+,** to open Settings.
-- The window shows the time when the timer will finish and stays on top by default. Closing it stops the timer and its audio.
+- The window shows the time when the timer will finish. Closing it stops the timer and its audio.
 - At zero, the window remains open at `00:00` and can play an alarm and show a desktop notification. Both can be configured in Settings.
 
 The default alarm is `notify4.wav` by Mihacappy, licensed CC0 1.0. You can select a different sound in Settings.

@@ -60,13 +60,6 @@ Kirigami.ScrollablePage {
             }
 
             Controls.CheckBox {
-                Kirigami.FormData.label: "Window:"
-                text: "Always on top"
-                checked: settingsManager.alwaysOnTop
-                onToggled: settingsManager.alwaysOnTop = checked
-            }
-
-            Controls.CheckBox {
                 Kirigami.FormData.label: "Completion:"
                 text: "Show desktop notification"
                 checked: settingsManager.notifyOnComplete
