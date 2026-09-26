@@ -64,7 +64,7 @@ flatpak run --system io.controlthings.cttimer --version
 flatpak run --system io.controlthings.cttimer
 ```
 
-The `--reinstall` flag replaces an existing system installation, and `run --system` avoids launching an older per-user installation with the same app ID. To check for a per-user copy, run `flatpak info --user io.controlthings.cttimer`. Run `flatpak run --system io.controlthings.cttimer --settings` to verify the Settings page.
+The `--reinstall` flag replaces an existing system installation, and `run --system` avoids launching an older per-user installation with the same app ID. To check for a per-user copy, run `flatpak info --user io.controlthings.cttimer`. Run `flatpak run --system io.controlthings.cttimer --settings` to verify the Settings page. Normal launches should return to the prompt without application diagnostics. To troubleshoot the rebuilt system installation in the foreground, run `flatpak run --system io.controlthings.cttimer --debug`.
 
 Qt also keeps a compiled QML cache in the app's user cache directory, separate from the Flatpak build cache. This can survive uninstalling the app. The manifest disables this disk cache because Flatpak normalizes resource timestamps, which can allow older cached UI code to remain valid after a rebuild. To test an existing installation without using its QML disk cache, run:
 
