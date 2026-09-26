@@ -6,13 +6,13 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-only</project_license>
   <description>
-    <p>cttimer is a compact countdown timer designed for KDE Plasma. Timers are started from the command line and appear as independent always-on-top windows with a progress ring, completion time, keyboard adjustment, pause/resume, sound, and desktop notifications.</p>
+    <p>cttimer is a compact countdown timer designed for KDE Plasma. Timers are started from the command line and appear as independent windows with a progress ring, completion time, keyboard adjustment, pause/resume, sound, and desktop notifications.</p>
   </description>
   <launchable type="desktop-id">io.controlthings.cttimer.desktop</launchable>
   <provides><binary>cttimer</binary></provides>
   <url type="homepage">https://controlthings.io/</url>
   <content_rating type="oars-1.1"/>
   <releases>
-    <release version="0.1.0" date="2026-09-24"/>
+    <release version="0.2.0" date="2026-09-24"/>
   </releases>
 </component>
